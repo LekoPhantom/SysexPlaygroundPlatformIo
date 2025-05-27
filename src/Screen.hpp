@@ -1,6 +1,7 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
+
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -8,9 +9,6 @@
 #include "ControlSurfaceSingleton.h"
 
 
-
-// ----------------------------- MIDI Interface ----------------------------- //
- //BluetoothMIDI_Interface midi; // in ControlSurfaceSingleton.h
 
 // ----------------------------- Display setup ------------------------------ //
 constexpr uint8_t SCREEN_WIDTH = 128;
@@ -247,20 +245,14 @@ void initDisplays() {
         Serial.println(F("Right OLED failed to initialize."));
         while (true);
     }
-
-       // Initialize the Control Surface through the singleton
-  //ControlSurfaceSingleton::getInstance().begin(); // this happens in the Main file
-  //Control_Surface.begin(); // ✅ Initialize Control Surface AFTER display setup
 }
 
 void updateDisplays() {
     uint8_t currentBank = bank.getSelection();
     if (currentBank >= 2) {
         Serial.println("Invalid Bank Access! Resetting...");
-        //bank.setSelection(0);
+      
     }
-    
-    //Control_Surface.loop();  
     updateLCDDisplay();
 }
 #endif

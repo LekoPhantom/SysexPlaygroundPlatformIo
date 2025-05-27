@@ -1,4 +1,5 @@
-// ControlledSysexPlayground.ino
+// ControlledSysexPlayground.cpp
+#include <Arduino.h>
 #include "Screen.hpp"
 #include "Pixies.hpp"
 #include "ControlSurfaceSingleton.h"
