@@ -43,7 +43,7 @@ void setAllLEDsColor(uint8_t colorByte) {
 
 void updateLEDColor(uint8_t trackIndex) {
     // Assuming trackIndex is 0-based and corresponds to the track number
-    uint8_t colorByte = trackIndex + 1; // Convert to 1-based color byte
+    uint8_t colorByte = trackIndex; // Convert to 1-based color byte
     setAllLEDsColor(colorByte);
 }
 void setLEDColor(uint8_t trackIndex, uint8_t colorByte) {
@@ -61,7 +61,20 @@ void rainbow() {
     FastLED.show();
 }
 
+uint8_t hue = 0;
 
+void lightItUp(){
+  for (int i = 0; i < NUM_LEDS; i++) {
+    //leds[i] = CHSV(hue, 255, 255);
+    leds[i] = CHSV(hue + (i * 10), 255, 255);
+  }
+
+  EVERY_N_MILLISECONDS(150){
+    hue++;
+  }
+
+  FastLED.show();
+}
 uint8_t ledCounter = 0;
 void  updatePixies() {
   static uint32_t lastUpdateTime = 0;
